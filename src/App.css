@@ -1,20 +1,28 @@
-#keyboard button{
-  background:pink;
+#current_word span {
+  font-size: 5em;
+}
+
+#current_word span.notfinded {
+  opacity: 0.3;
+
+}
+
+#current_word span.lost {
+  color: red;
+}
+
+#keyboard button {
+  background: pink;
   color: white;
-  padding : 5px;
-  border:0;
+  padding: 5px;
+  border: 0;
   margin: 20px;
   font-size: 20px;
   display: inline-block;
   width: 30px;
-
-
-
-
 }
 
-
-#keyboard button.used{
-opacity: 0.5;
+#keyboard button.used {
+  opacity: 0.5;
 
 }

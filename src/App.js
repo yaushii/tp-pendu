@@ -20,99 +20,103 @@ class App extends Component {
   componentDidMount() {
 
     window.addEventListener("keyup", (e) => {
-      if(e.keyCode==13){
+      if (e.keyCode == 13) {
         this.initGame()
       }
-			console.log(e)
-			
+      console.log(e)
+
     })
-    
+
 
     this.initGame()
   }
 
   clickLetter = (letter) => {
 
-		if (this.state.usedLetter.indexOf(letter) === -1) {
-			//populate user letter (for prevent multiple click on same letter)
-			const usedLetter = [letter, ...this.state.usedLetter]
-			
-			//calcul attempt
-			let attempt = this.state.attempt
-			if (this.state.currentWord.indexOf(letter) === -1) {
+    if (this.state.usedLetter.indexOf(letter) === -1) {
+      //populate user letter (for prevent multiple click on same letter)
+      const usedLetter = [letter, ...this.state.usedLetter]
+
+      //calcul attempt
+      let attempt = this.state.attempt
+      if (this.state.currentWord.indexOf(letter) === -1) {
         attempt = this.state.attempt + 1
-        
-			}
 
-			//calcul win state
-			let win = 1
-			for (let i = 0; i < this.state.currentWord.length; i++) { 
-				if (usedLetter.indexOf(this.state.currentWord[i]) === -1) { 
+      }
+
+      //calcul win state
+      let win = 1
+      for (let i = 0; i < this.state.currentWord.length; i++) {
+        if (usedLetter.indexOf(this.state.currentWord[i]) === -1) {
           win = 0
-          
-				}
-			}
 
-			//calcul lost state 
-			if (attempt >= 9 && win === 0) { 
-				win = -1
-			}
+        }
+      }
 
-			//update state
-			this.setState({ usedLetter, attempt, win })
-		}
+      //calcul lost state 
+      if (attempt >= 9 && win === 0) {
+        win = -1
+      }
 
-	}
+      //update state
+      this.setState({ usedLetter, attempt, win })
+    }
 
+  }
+  // pickNewWord = () => {
+  //   const randomIndex = Math.floor(Math.random() * this.state.wordCollection.lenght)
+  //   return this.state.wordCollection[ randomIndex ]
+  // }
 
   initGame = () => {
 
     this.setState({
-      currentWord: "licorne",
+      currentWord: this.pickNewWord,
       usedLetter: [],
-      win:0,
-      attempt:0,
+      win: 0,
+      attempt: 0,
     })
 
   }
 
   render() {
-    return ( 
-      <div id ="game">
-      
-      <h1 > pendu </h1>
+    return (
+      <div id="game">
 
-      win = {
-        this.state.win
-      } <
-      br / >
-      attempt = {
-        this.state.attempt
-      }
+        <h1 > pendu </h1>
 
-      {
-        (this.state.currentWord !== null) &&
-       
-         <CurrentWord
-          currentWord = {this.state.currentWord}
-          usedLetter = {this.state.usedLetter}
-          win={this.state.win}
-        
-        
-        />
+        win = {
+          this.state.win
+        } <br />
+        attempt = {this.state.attempt
+        }
 
-      } 
-      {
-      this.state.win == 0 && 
-      <Keyboard 
-      alphabet = {this.state.alphabet}
-      usedLetter = {this.state.usedLetter}
-      action = {this.clickLetter}
-      />
 
-      
-    }
-    </div>
-    )}}
+        {
+          (this.state.currentWord !== null) &&
+
+          <CurrentWord
+            currentWord={this.state.currentWord}
+            usedLetter={this.state.usedLetter}
+            win={this.state.win}
+
+
+          />
+
+        }
+        {
+          this.state.win == 0 &&
+          <Keyboard
+            alphabet={this.state.alphabet}
+            usedLetter={this.state.usedLetter}
+            action={this.clickLetter}
+          />
+
+
+        }
+      </div>
+    )
+  }
+}
 
 export default App;

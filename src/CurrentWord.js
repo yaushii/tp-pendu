@@ -1,24 +1,29 @@
 import React from 'react';
 import './App.css';
 
-const CurrentWord = ({currentWord, usedLetter,win}) => {
+const CurrentWord = ({ currentWord, usedLetter, win }) => {
 
     return (
-        <div>
+        <div id ="current_word">
             {
                 currentWord.split('').map(
-                    (letter, key)=>{
+                    (letter, key) => {
 
-                        let status ="finded"
+                        let status = "finded"
 
                         if (usedLetter.indexOf(letter) == -1) {
-                            status = "notfinded"
+                            status = "lost"
+                        }else{
+                                if (win === -1){
+                                    status="notfinded"
+
+                                }   
 
                         }
 
-                        return <span key={'letter_'+ key} classname ={status} >
-                        {status == "finded" ? letter : 
-                        (win === -1  ? letter : "?" )}</span>
+                        return <span key={'letter_' + key} classname={status} >
+                            {status == "finded" ? letter :
+                                (win === -1 ? letter : "?")}</span>
                     }
                 )
             }
