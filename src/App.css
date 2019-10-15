@@ -1,0 +1,20 @@
+#keyboard button{
+  background:pink;
+  color: white;
+  padding : 5px;
+  border:0;
+  margin: 20px;
+  font-size: 20px;
+  display: inline-block;
+  width: 30px;
+
+
+
+
+}
+
+
+#keyboard button.used{
+opacity: 0.5;
+
+}
